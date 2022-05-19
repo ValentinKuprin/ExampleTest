@@ -5,6 +5,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+
 
 public class WebTest {
     //
@@ -150,15 +155,22 @@ public class WebTest {
     @Test //TC_11_06
     public static void testNameCreatorOfTheSite() {
         String chromeDriver = "webdriver.chrome.driver";
-        //String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
-        String driverPath = "D:\\chromedriver.exe";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        String driverPath1 = "D:\\chromedriver.exe";
+       if (Files.exists(Path.of(driverPath))){ //существует или нет
+           System.setProperty(chromeDriver, driverPath);
+
+       } else {
+           System.setProperty(chromeDriver, driverPath1);
+       }
+        WebDriver driver = new ChromeDriver();
         String url = "http://www.99-bottles-of-beer.net/";
         String expectedResult = "Oliver Schade";
         String expectedResult1 = "Gregor Scheithauer";
         String expectedResult2 = "Stefan Scheler";
 
-        System.setProperty(chromeDriver, driverPath);
-        WebDriver driver = new ChromeDriver();
+
+
 
         driver.get(url);
         WebElement submenuTeam = driver.findElement(
@@ -206,10 +218,10 @@ public class WebTest {
     }
 
     @Test //TC_11_11
-    public static void testIsEmptyRequiredField() {
+    public static void testIsEmptyRequiredField() throws InterruptedException {
         String chromeDriver = "webdriver.chrome.driver";
-        //String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
-        String driverPath = "D:\\chromedriver.exe";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+       // String driverPath = "D:\\chromedriver.exe";
         String url = "http://www.99-bottles-of-beer.net/submitnewlanguage.html";
         String expectedResult = "Error: Precondition failed - Incomplete Input.";
 
@@ -218,7 +230,7 @@ public class WebTest {
 
         driver.get(url);
         WebElement fieldLanguageName = driver.findElement(
-                By.xpath("//body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/input[@name='language']")
+                By.xpath("//input[@name='language']") ////body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/input[@name='language']
         );
         WebElement fieldAuthor = driver.findElement(
                 By.xpath("//body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/input[@name='author']")
@@ -230,12 +242,118 @@ public class WebTest {
                 By.xpath("//body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/input[@name='captcha']")
         );
         WebElement fieldCode = driver.findElement(
-                By.xpath("//body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/input[@name='code']")
+                By.xpath("//body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/textarea[@name='code']")
         );
-       // https://translated.turbopages.org/proxy_u/en-ru.ru.005b5abb-6284e51c-ed8f3c3e-74722d776562/https/stackoverflow.com/questions/8004437/verify-that-all-text-input-fields-are-empty-with-selenium
+
+        WebElement buttonSubmitLanguage = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/input[@type='submit']")
+        );
+
+        fieldLanguageName.sendKeys("fg");
+        Thread.sleep(2000);
+
+
+
+            buttonSubmitLanguage.click();
+
+        WebElement fieldLanguageName1 = driver.findElement(
+                By.xpath("//input[@name='language']")
+        );
+
+        fieldLanguageName1.getAttribute("value"); //.isEmpty();
+        fieldLanguageName1.getText();
+        System.out.println(fieldLanguageName1.getAttribute("value"));
+
+        Boolean isFielsEmpty = fieldLanguageName.getText().isEmpty() && fieldAuthor.getText().isEmpty() && fieldEmail.getText().isEmpty()
+                && fieldCaptcha.getText().isEmpty() && fieldCode.getText().isEmpty();
+
+        Assert.assertFalse(isFielsEmpty, "Поле заполнено" );
+
+//        WebElement error = driver.findElement(
+//                By.xpath("//body/div[@id='wrap']/div[@id='main']/p/b/u['Error']")
+//        );
+
+            WebElement message = driver.findElement(
+                    By.xpath("//body/div[@id='wrap']/div[@id='main']/p[text()=' Precondition failed - Incomplete Input.']")
+            );
+
+            String actualResult = message.getText();
+
+            Assert.assertEquals(actualResult, expectedResult);
+
+        //Assert.assertTrue(false);
+
+
+            driver.quit();
+        }
+
+
+    @Test //TC_11_12
+    public static void isEmptyField() {
+        String chromeDriver = "webdriver.chrome.driver";
+        //String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        String driverPath = "D:\\chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/submitnewlanguage.html";
+        String expectedResult = "Error: Precondition failed - Incomplete Input.";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+
+        driver.get(url);
+        driver.findElement(
+                        By.xpath("//body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/input[@type='submit']"))
+                .click();
+        WebElement errorEmptyConfirmField = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/p"));
+        String errorMessage = errorEmptyConfirmField.getText();
+        System.out.println(errorMessage);
+
+        if (errorMessage.contains(":") && errorMessage.contains("-") && errorMessage.contains(".")) {
+        }
+        String[] errorWords = errorMessage.replace(":", "")
+                .replace("- ", "").replace(".", "").split(" ");
+        System.out.println(Arrays.toString(errorWords));
+
+        String[] testWords = {"Error","Precondition", "failed", "Incomplete", "Input"};
+
+        Boolean result;
+
+        for (int i = 0; i < errorWords.length; i++) {
+            if (Character.toString(errorWords[i].charAt(0))
+                    .equals(Character.toString(testWords[i].charAt(0)))) {
+                result = true;
+            } else {
+                result = false;
+            }
+            Assert.assertTrue(result);
+
+        }
+        driver.quit();
+    }
+
+    @Test //TC_11_13
+    public static void confirmFirstItemList() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        // String driverPath = "D:\\chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/submitnewlanguage.html";
+        String expectedResult = "IMPORTANT: Take your time! The more carefully you fill out this form " +
+                "(especially the language name and description), the easier it will be for us and the faster " +
+                "your language will show up on this page. We don't have the time to mess around with fixing " +
+                "your descriptions etc. Thanks for your understanding.";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement redBackground = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span"));
+       WebElement importanWord = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span/b"));
+      // WebElement = textFirstItem = driver.findElement(By.xpath(""));
 
 
 
     }
+
 
 }
