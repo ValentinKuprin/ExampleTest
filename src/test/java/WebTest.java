@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class WebTest {
@@ -157,19 +158,17 @@ public class WebTest {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         String driverPath1 = "D:\\chromedriver.exe";
-       if (Files.exists(Path.of(driverPath))){ //существует или нет
-           System.setProperty(chromeDriver, driverPath);
+        if (Files.exists(Path.of(driverPath))) { //существует или нет
+            System.setProperty(chromeDriver, driverPath);
 
-       } else {
-           System.setProperty(chromeDriver, driverPath1);
-       }
+        } else {
+            System.setProperty(chromeDriver, driverPath1);
+        }
         WebDriver driver = new ChromeDriver();
         String url = "http://www.99-bottles-of-beer.net/";
         String expectedResult = "Oliver Schade";
         String expectedResult1 = "Gregor Scheithauer";
         String expectedResult2 = "Stefan Scheler";
-
-
 
 
         driver.get(url);
@@ -195,9 +194,9 @@ public class WebTest {
         String actualResult1 = nameGregorScheithauer.getText();
         String actualResult2 = nameStefanScheler.getText();
 
-        Assert.assertEquals(actualResult,expectedResult);
-        Assert.assertEquals(actualResult1,expectedResult1);
-        Assert.assertEquals(actualResult2,expectedResult2);
+        Assert.assertEquals(actualResult, expectedResult);
+        Assert.assertEquals(actualResult1, expectedResult1);
+        Assert.assertEquals(actualResult2, expectedResult2);
 
         driver.quit();
     }
@@ -221,7 +220,7 @@ public class WebTest {
     public static void testIsEmptyRequiredField() throws InterruptedException {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
-       // String driverPath = "D:\\chromedriver.exe";
+        // String driverPath = "D:\\chromedriver.exe";
         String url = "http://www.99-bottles-of-beer.net/submitnewlanguage.html";
         String expectedResult = "Error: Precondition failed - Incomplete Input.";
 
@@ -253,8 +252,7 @@ public class WebTest {
         Thread.sleep(2000);
 
 
-
-            buttonSubmitLanguage.click();
+        buttonSubmitLanguage.click();
 
         WebElement fieldLanguageName1 = driver.findElement(
                 By.xpath("//input[@name='language']")
@@ -267,25 +265,25 @@ public class WebTest {
         Boolean isFielsEmpty = fieldLanguageName.getText().isEmpty() && fieldAuthor.getText().isEmpty() && fieldEmail.getText().isEmpty()
                 && fieldCaptcha.getText().isEmpty() && fieldCode.getText().isEmpty();
 
-        Assert.assertFalse(isFielsEmpty, "Поле заполнено" );
+        Assert.assertFalse(isFielsEmpty, "Поле заполнено");
 
 //        WebElement error = driver.findElement(
 //                By.xpath("//body/div[@id='wrap']/div[@id='main']/p/b/u['Error']")
 //        );
 
-            WebElement message = driver.findElement(
-                    By.xpath("//body/div[@id='wrap']/div[@id='main']/p[text()=' Precondition failed - Incomplete Input.']")
-            );
+        WebElement message = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='main']/p[text()=' Precondition failed - Incomplete Input.']")
+        );
 
-            String actualResult = message.getText();
+        String actualResult = message.getText();
 
-            Assert.assertEquals(actualResult, expectedResult);
+        Assert.assertEquals(actualResult, expectedResult);
 
         //Assert.assertTrue(false);
 
 
-            driver.quit();
-        }
+        driver.quit();
+    }
 
 
     @Test //TC_11_12
@@ -298,7 +296,6 @@ public class WebTest {
 
         System.setProperty(chromeDriver, driverPath);
         WebDriver driver = new ChromeDriver();
-
 
         driver.get(url);
         driver.findElement(
@@ -314,10 +311,9 @@ public class WebTest {
                 .replace("- ", "").replace(".", "").split(" ");
         System.out.println(Arrays.toString(errorWords));
 
-        String[] testWords = {"Error","Precondition", "failed", "Incomplete", "Input"};
+        String[] testWords = {"Error", "Precondition", "failed", "Incomplete", "Input"};
 
         Boolean result;
-
         for (int i = 0; i < errorWords.length; i++) {
             if (Character.toString(errorWords[i].charAt(0))
                     .equals(Character.toString(testWords[i].charAt(0)))) {
@@ -344,16 +340,117 @@ public class WebTest {
 
         System.setProperty(chromeDriver, driverPath);
         WebDriver driver = new ChromeDriver();
-
         driver.get(url);
 
         WebElement redBackground = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span"));
-       WebElement importanWord = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span/b"));
-      // WebElement = textFirstItem = driver.findElement(By.xpath(""));
+        WebElement importanWord = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span/b"));
+        WebElement textFirstItem = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li[contains(text(), 'Take')]"));
+        String actualResult = textFirstItem.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
+
+        driver.quit();
+    }
+
+    @Test //TC_11_14
+    public static void checkTableColumnNames() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        String driverPath1 = "D:\\chromedriver.exe";
+        if (Files.exists(Path.of(driverPath))) { //существует или нет
+            System.setProperty(chromeDriver, driverPath);
+
+        } else {
+            System.setProperty(chromeDriver, driverPath1);
+        }
+        String url = "http://www.99-bottles-of-beer.net/";
+        Boolean expectedResult = true;
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+        driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/abc.html']")).click();
+        WebElement firstColumnName = driver.findElement(
+             By.xpath("//body/div[@id='wrap']/div[@id='main']/table[@id='category']/tbody/tr/th[text()='Language']"));
+        WebElement secondColumnName = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='main']/table[@id='category']/tbody/tr/th[text()='Author']"));
+        boolean actualResult;
+        if ((firstColumnName.getText().equals("Language")) && (secondColumnName.getText().equals("Author"))) {
+            actualResult = true;
+        } else {
+            actualResult = false;
+        }
+
+        Assert.assertTrue(actualResult);
+
+        driver.quit();
+    }
+
+    @Test //TC_11_15
+    public static void isNotSeeNewComments() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        String driverPath1 = "D:\\chromedriver.exe";
+        if (Files.exists(Path.of(driverPath))) { //существует или нет
+            System.setProperty(chromeDriver, driverPath);
+
+        } else {
+            System.setProperty(chromeDriver, driverPath1);
+        }
+        String url = "http://www.99-bottles-of-beer.net/";
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+        driver.findElement(
+          By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/toplist.html']")).click();
+        driver.findElement(
+                By.xpath("//body/div[@id='wrap']" +
+                        "/div[@id='navigation']/ul[@id='submenu']/li/a[@href='./newcomments.html']")).click();
+        List<WebElement> listComments = driver.findElements(By.xpath("//body/div[@id='wrap']/div[@id='main']/p"));
+        Boolean result;
+        if (!listComments.isEmpty()) {
+            result = true;
+            System.out.println(result);
+        } else {
+            result = false;
+            System.out.println(result);
+        }
+
+        Assert.assertTrue(result, "Нет коментариев");
+
+        driver.quit();
+    }
+
+    @Test //TC_11_24
+    public static void confirmWarningWhiteLetters() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        String driverPath1 = "D:\\chromedriver.exe";
+        if (Files.exists(Path.of(driverPath))) { //существует или нет
+            System.setProperty(chromeDriver, driverPath);
+
+        } else {
+            System.setProperty(chromeDriver, driverPath1);
+        }
+        String url = "http://www.99-bottles-of-beer.net/submitnewlanguage.html";
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+        WebElement word = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span/b"));
+        String colorText = word.getCssValue("color");
+        String back = word.getCssValue("background-color");
+        String size = word.getCssValue("font-size");
+        System.out.println(colorText + " " + back + " " + size);
+
 
 
 
     }
+
 
 
 }
