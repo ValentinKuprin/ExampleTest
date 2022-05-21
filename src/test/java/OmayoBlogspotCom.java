@@ -81,7 +81,7 @@ public class OmayoBlogspotCom {
             driver.findElement(By.name("q")).sendKeys("Arun");
         }
     }
-
+/////////////////////////////////////////////////////// wait ///////////////////////////////////
     @Test
     public static void checkCheckbox() { // + Ограничения загрузки элемента
         String chromeDriver = "webdriver.chrome.driver";
@@ -113,7 +113,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testDropdawn() { // + Неявное ожидание (глобальное)
+    public static void testDropdawnAndWaitUntil() { // + Явное ожидание (для определенного поля)
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -132,4 +132,77 @@ public class OmayoBlogspotCom {
         driver.findElement(By.linkText("Flipkart")).click(); //
     }
 
+    @Test
+    public static void testElementToBeClickable() { //Чек бокс доступен после нажатия на кнопку
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL);
+
+        WebDriverWait wait = new WebDriverWait(driver, 12);
+
+
+        driver.findElement(By.xpath("//button[text()= 'Check this']")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("dte"))).click(); //Что бы элемент был кликабельным
     }
+
+    @Test
+    public static void testInvisibilityOfElementLocated() { //Ожидание выполнения условия (кнопка нажимается по истечению времени)
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL);
+
+        WebDriverWait wait = new WebDriverWait(driver, 25);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("deletesuccess")));
+        //Невидимость элемента раcположенного по локатору (Ждем пока элемент исчезнет)
+        driver.findElement(By.id("alert2")).click();
+    }
+
+    @Test
+    public static void testAlertAcceptOrDismiss() { //Переход на оповещение
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL);
+
+        driver.findElement(By.id("alert1")).click();
+        Alert alert = driver.switchTo().alert(); // Создаем объект класса
+        String textOfAlert = alert.getText();
+        System.out.println(textOfAlert);
+        alert.accept(); //Принять предупреждение
+        // alert.dismiss(); //Закроет вместо принятья
+    }
+
+    @Test
+    public static void testAlertIsPresent() { //Ожидание предупреждения
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL);
+
+        driver.findElement(By.id("alert1")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.alertIsPresent()); //Команда ждет появления предупреждения (не более 10 сек.
+        Alert alert = driver.switchTo().alert(); //Переключиться на окно (предупреждение)
+        alert.accept();
+    }
+
+    @Test
+    public static void testsenKeysOfAlert() { //
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL);
+
+        driver.findElement(By.id("prompt")).click();
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys("Aurm"); //Ввод текста, проблемы с водом в браузере хром.
+        
+    }
+}
