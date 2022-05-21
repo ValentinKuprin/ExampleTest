@@ -4,10 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -342,8 +340,6 @@ public class WebTest {
         WebDriver driver = new ChromeDriver();
         driver.get(url);
 
-        WebElement redBackground = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span"));
-        WebElement importanWord = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span/b"));
         WebElement textFirstItem = driver.findElement(
                 By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li[contains(text(), 'Take')]"));
         String actualResult = textFirstItem.getText();
@@ -440,11 +436,28 @@ public class WebTest {
         WebDriver driver = new ChromeDriver();
 
         driver.get(url);
-        WebElement word = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span/b"));
-        String colorText = word.getCssValue("color");
-        String back = word.getCssValue("background-color");
-        String size = word.getCssValue("font-size");
-        System.out.println(colorText + " " + back + " " + size);
+        WebElement text = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span/b"));
+        String colorText = text.getCssValue("color"); // цвет букв
+      //  String hex = Color.fromString(colorText).asHex();
+        String typeFont = text.getCssValue("font-weight"); // ип шрифта
+        String background = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='main']/ul/li/span")).getCssValue("background-color"); //цвет фона
+      //  String size = text.getCssValue("font-size"); // высота шрифта
+        Boolean result;
+        if (colorText.contains("rgba(255, 255, 255, 1)") && typeFont.contains("700")
+                && background.contains("255, 0, 0, 1") && text.getText().equals(text.getText().toUpperCase())) {
+         //   System.out.println(colorText + " " + typeFont + " " + background + " " + size + " " + hex );
+            result = true;
+        //    System.out.println(result);
+        } else {
+            result = false;
+       //     System.out.println(result);
+        }
+        Assert.assertTrue(result, "предупреждение IMPORTANT: " +
+                "написано белыми буквами bold шрифтом на красном фоне и все буквы - capital");
+
+
+
 
 
 
