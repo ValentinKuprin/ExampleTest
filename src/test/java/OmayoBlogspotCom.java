@@ -83,7 +83,7 @@ public class OmayoBlogspotCom {
     }
 /////////////////////////////////////////////////////// wait ///////////////////////////////////
     @Test
-    public static void checkCheckbox() { // + Ограничения загрузки элемента
+    public void checkCheckbox() { // + Ограничения загрузки элемента
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -96,7 +96,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testDropdawn() { // + Неявное ожидание (глобальное)
+    public void testDropdawn() { // + Неявное ожидание (глобальное)
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -113,7 +113,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testDropdawnAndWaitUntil() { // + Явное ожидание (для определенного поля)
+    public void testDropdawnAndWaitUntil() { // + Явное ожидание (для определенного поля)
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -133,7 +133,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testElementToBeClickable() { //Чек бокс доступен после нажатия на кнопку
+    public void testElementToBeClickable() { //Чек бокс доступен после нажатия на кнопку
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -148,7 +148,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testInvisibilityOfElementLocated() { //Ожидание выполнения условия (кнопка нажимается по истечению времени)
+    public void testInvisibilityOfElementLocated() { //Ожидание выполнения условия (кнопка нажимается по истечению времени)
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -162,7 +162,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testAlertAcceptOrDismiss() { //Переход на оповещение
+    public void testAlertAcceptOrDismiss() { //Переход на оповещение
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -178,7 +178,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testAlertIsPresent() { //Ожидание предупреждения
+    public void testAlertIsPresent() { //Ожидание предупреждения
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -193,7 +193,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testSendKeysOfAlert() { //ввести текст в окне предупреждения
+    public void testSendKeysOfAlert() { //ввести текст в окне предупреждения
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -206,7 +206,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testSendKeysOfWebElementAndSendKeysOfActions() { //ввести текст в окне предупреждения
+    public void testSendKeysOfWebElementAndSendKeysOfActions() { //ввести текст в окне предупреждения
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -224,7 +224,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testDragAndDropBy() { //передвинуть ползунок
+    public void testDragAndDropBy() { //передвинуть ползунок
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -239,7 +239,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testDragAndDrop() { //перетягивание элемента из точки А в точку Б
+    public void testDragAndDrop() { //перетягивание элемента из точки А в точку Б
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -253,14 +253,14 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testDragAndDropClickHold() { //перетягивание элемента с помощью мыши
+    public void testDragAndDropClickHold() { //перетягивание элемента с помощью мыши
 
     }
 
 
 
     @Test
-    public static void testContextClickAndDoubleClick() { //нажать правую кнопку мыши, сделать двойное нажатие мыши
+    public void testContextClickAndDoubleClick() { //нажать правую кнопку мыши, сделать двойное нажатие мыши
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -277,7 +277,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testKeyDownAndClick() { //Зажать кнопку на клавиатуры и кликнуть мышью
+    public void testKeyDownAndClick() { //Зажать кнопку на клавиатуры и кликнуть мышью
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -290,7 +290,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testPressSeveralKeys() throws InterruptedException { //Одновременное нажатие нескольких клавиш
+    public void testPressSeveralKeys() throws InterruptedException { //Одновременное нажатие нескольких клавиш
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -305,7 +305,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testJavascriptExecutor() { //Запуск JavaStript отобразить предупреждение
+    public void testJavascriptExecutor() { //Запуск JavaStript отобразить предупреждение
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         System.setProperty(chromeDriver, driverPath);
@@ -317,7 +317,7 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public static void testExecuteAsyncScript() { //Команда синхранизации (Выполнить синхронный код яваскрипт)
+    public void testExecuteAsyncScript() { //Команда синхранизации (Выполнить синхронный код яваскрипт)
         //Нормальный тип ЯваСкрипт - выполняется поочередно
         //Синхронный тип яваСкрипт - тип основан на времени, первым выполняется тот который можно выполнить быстрее
 

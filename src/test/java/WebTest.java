@@ -13,7 +13,7 @@ import java.util.List;
 public class WebTest {
     //
     @Test
-    public void testMenuStartTitle() throws InterruptedException {
+    public void testMenuStartTitle() {
 
         String chromeDriver = "webdriver.chrome.driver";
         //String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
@@ -49,7 +49,7 @@ public class WebTest {
     }
 
     @Test //TC_11_01
-    public static void testHeading() {
+    public void testHeading() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "D:\\chromedriver.exe";
@@ -73,7 +73,7 @@ public class WebTest {
     }
 
     @Test //TC_11_02
-    public static void testLastItemMenu() {
+    public void testLastItemMenu() {
 
         String chromeDriver = "webdriver.chrome.driver";
         //String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
@@ -87,23 +87,23 @@ public class WebTest {
         driver.get(url);
         WebElement lastMenuItemName = driver.findElement(
                 By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']" +
-                        "/li[last()]/a[@href='/submitnewlanguage.html']")
+                        "/li[last()]/a[@href='/submitnewlanguage.html']") //после ласт лишнее, для практики
         );
 
         String actualResult = lastMenuItemName.getText();
 
-        Assert.assertEquals(actualResult, expectedResult);
+        Assert.assertEquals(actualResult, expectedResult.toUpperCase());
 
         driver.quit();
     }
 
     @Test //TC_11_03
-    public static void testTitleLastItemMenu() {
+    public void testTitleLastItemMenu() {
         String chromeDriver = "webdriver.chrome.driver";
         //String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         String driverPath = "D:\\chromedriver.exe";
         String url = "http://www.99-bottles-of-beer.net/";
-        String expectedResult = "Submit new Language";
+        String expectedResult = "Submit New Language";
 
         System.setProperty(chromeDriver, driverPath);
         WebDriver driver = new ChromeDriver();
@@ -129,7 +129,7 @@ public class WebTest {
     }
 
     @Test //TC_11_04
-    public static void testNameFirstItemSubmenu() {
+    public void testNameFirstItemSubmenu() {
         String chromeDriver = "webdriver.chrome.driver";
         //String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         String driverPath = "D:\\chromedriver.exe";
@@ -152,7 +152,7 @@ public class WebTest {
     }
 
     @Test //TC_11_06
-    public static void testNameCreatorOfTheSite() {
+    public void testNameCreatorOfTheSite() {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         String driverPath1 = "D:\\chromedriver.exe";
@@ -179,21 +179,22 @@ public class WebTest {
         WebElement nameOliverSchade = driver.findElement(
                 By.xpath("//body/div[@id='wrap']/div[@id='main']/h3[text()='Oliver Schade']")
         );
+        String actualResult = nameOliverSchade.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
 
         WebElement nameGregorScheithauer = driver.findElement(
                 By.xpath("//body/div[@id='wrap']/div[@id='main']/h3[text()='Gregor Scheithauer']")
         );
+        String actualResult1 = nameGregorScheithauer.getText();
+
+        Assert.assertEquals(actualResult1, expectedResult1);
 
         WebElement nameStefanScheler = driver.findElement(
                 By.xpath("//body/div[@id='wrap']/div[@id='main']/h3[text()='Stefan Scheler']")
         );
-
-        String actualResult = nameOliverSchade.getText();
-        String actualResult1 = nameGregorScheithauer.getText();
         String actualResult2 = nameStefanScheler.getText();
 
-        Assert.assertEquals(actualResult, expectedResult);
-        Assert.assertEquals(actualResult1, expectedResult1);
         Assert.assertEquals(actualResult2, expectedResult2);
 
         driver.quit();
@@ -201,7 +202,7 @@ public class WebTest {
 
 
     @Test //TC_11_07 ПРИДУМАТЬ!
-    public static void testMyOwnAutoTest() {
+    public void testMyOwnAutoTest() {
         String chromeDriver = "webdriver.chrome.driver";
         //String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         String driverPath = "D:\\chromedriver.exe";
@@ -215,7 +216,7 @@ public class WebTest {
     }
 
     @Test //TC_11_11
-    public static void testIsEmptyRequiredField() throws InterruptedException {
+    public void testIsEmptyRequiredField() throws InterruptedException {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         // String driverPath = "D:\\chromedriver.exe";
@@ -285,7 +286,7 @@ public class WebTest {
 
 
     @Test //TC_11_12
-    public static void isEmptyField() {
+    public void isEmptyField() {
         String chromeDriver = "webdriver.chrome.driver";
         //String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         String driverPath = "D:\\chromedriver.exe";
@@ -326,7 +327,7 @@ public class WebTest {
     }
 
     @Test //TC_11_13
-    public static void confirmFirstItemList() {
+    public void confirmFirstItemList() {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         // String driverPath = "D:\\chromedriver.exe";
@@ -350,7 +351,7 @@ public class WebTest {
     }
 
     @Test //TC_11_14
-    public static void checkTableColumnNames() {
+    public void checkTableColumnNames() {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         String driverPath1 = "D:\\chromedriver.exe";
@@ -385,7 +386,7 @@ public class WebTest {
     }
 
     @Test //TC_11_15
-    public static void isNotSeeNewComments() {
+    public void isNotSeeNewComments() {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         String driverPath1 = "D:\\chromedriver.exe";
@@ -421,7 +422,7 @@ public class WebTest {
     }
 
     @Test //TC_11_24
-    public static void confirmWarningWhiteLetters() {
+    public void confirmWarningWhiteLetters() {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:\\Users\\xBrooKx\\Downloads\\chromedriver_win32\\chromedriver.exe";
         String driverPath1 = "D:\\chromedriver.exe";
