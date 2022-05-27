@@ -254,10 +254,42 @@ public class OmayoBlogspotCom {
 
     @Test
     public void testDragAndDropClickHold() { //перетягивание элемента с помощью мыши
+//       try { /1-35
+//           driver.get("https://crossbrowsertesting.github.io/drag-and-drop");
+//           Thread.sleep(2000);
 
+//           WebElement element = driver.findElement(By.id("draggable"));
+//           WebElement element2 = driver.findElement(By.id("draggable"));
+
+
+//           Actions actions = new Actions(driver);
+
+//           actions
+//                   //.dragAndDropBy(element, 100, 100);
+
+//                   .pause(1000)
+
+//                   .moveToElement(element)
+
+//                   .clickAndHold()
+
+//                   .moveToElement(element2)
+
+//                   .release()
+
+//                   .build()
+
+//                   .perform();
+
+
+//       } catch (InterruptedException e) {
+//           e.printStackTrace();
+//       }
+//       finally {
+//           Thread.sleep(20000);
+//           driver.quit();
+//       }git status
     }
-
-
 
     @Test
     public void testContextClickAndDoubleClick() { //нажать правую кнопку мыши, сделать двойное нажатие мыши
