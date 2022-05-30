@@ -19,48 +19,26 @@ import java.util.Arrays;
  *
  */
 
+//        if (errorMessage.contains(":") && errorMessage.contains("-") && errorMessage.contains(".")) {
+//        }
+//        String[] errorWords = errorMessage.replace(":", "")
+//                .replace("- ", "").replace(".", "").split(" ");
+//        System.out.println(Arrays.toString(errorWords));
+//
+//        String[] testWords = {"Error", "Precondition", "failed", "Incomplete", "Input"};
+//
+//        Boolean result;
+//        for (int i = 0; i < errorWords.length; i++) {
+//            if (Character.toString(errorWords[i].charAt(0))
+//                    .equals(Character.toString(testWords[i].charAt(0)))) {
+//                result = true;
+//            } else {
+//                result = false;
+//            }
+//            Assert.assertTrue(result);
+//
+//        }
+//        driver.quit();
+//    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        if (errorMessage.contains(":") && errorMessage.contains("-") && errorMessage.contains(".")) {
-        }
-        String[] errorWords = errorMessage.replace(":", "")
-                .replace("- ", "").replace(".", "").split(" ");
-        System.out.println(Arrays.toString(errorWords));
-
-        String[] testWords = {"Error", "Precondition", "failed", "Incomplete", "Input"};
-
-        Boolean result;
-        for (int i = 0; i < errorWords.length; i++) {
-            if (Character.toString(errorWords[i].charAt(0))
-                    .equals(Character.toString(testWords[i].charAt(0)))) {
-                result = true;
-            } else {
-                result = false;
-            }
-            Assert.assertTrue(result);
-
-        }
-        driver.quit();
-    }
-
-}

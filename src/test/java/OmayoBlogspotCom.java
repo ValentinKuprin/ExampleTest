@@ -4,9 +4,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
 public class OmayoBlogspotCom {
 
     public static final String URL = "http://omayo.blogspot.com/";
@@ -68,7 +72,7 @@ public class OmayoBlogspotCom {
         driver.findElement(By.linkText("Open a popup window")).click();
         Set<String> windows = driver.getWindowHandles(); //захват нескольких окон
         Iterator<String> itr = windows.iterator(); // перебор окон
-        while(itr.hasNext()) { // зайти и посмотреть, есть ли окна ? если есть вернуть первое
+        while (itr.hasNext()) { // зайти и посмотреть, есть ли окна ? если есть вернуть первое
 
             String window = itr.next();
 
@@ -81,7 +85,8 @@ public class OmayoBlogspotCom {
             driver.findElement(By.name("q")).sendKeys("Arun");
         }
     }
-/////////////////////////////////////////////////////// wait ///////////////////////////////////
+
+    /////////////////////////////////////////////////////// wait ///////////////////////////////////
     @Test
     public void checkCheckbox() { // + Ограничения загрузки элемента
         String chromeDriver = "webdriver.chrome.driver";
@@ -233,7 +238,7 @@ public class OmayoBlogspotCom {
 
         WebElement minPriceOption = driver.findElement(By.xpath("//a[@aria-labelledby='price-min-label']"));
         Actions actions = new Actions(driver);
-        actions.dragAndDropBy(minPriceOption, 100,0)// выбираем элемент который хотим передвинуть по горизонтали, на 100 пунктов, не привязано к шкале, y - вертикаль.
+        actions.dragAndDropBy(minPriceOption, 100, 0)// выбираем элемент который хотим передвинуть по горизонтали, на 100 пунктов, не привязано к шкале, y - вертикаль.
                 .build() // Используется если действий  > 1 ->(sendKeys(Keys.Tab).sendKeys(Keys.ENTER)) IF <= 1 тогда build() не требуется, используем сразу .perform()
                 .perform(); // Команда выполнить,
     }
@@ -253,42 +258,84 @@ public class OmayoBlogspotCom {
     }
 
     @Test
-    public void testDragAndDropClickHold() { //перетягивание элемента с помощью мыши
-//       try { /1-35
-//           driver.get("https://crossbrowsertesting.github.io/drag-and-drop");
-//           Thread.sleep(2000);
-
-//           WebElement element = driver.findElement(By.id("draggable"));
-//           WebElement element2 = driver.findElement(By.id("draggable"));
+    public void testDragAndDropClickHold() throws InterruptedException { //перетягивание элемента с помощью мыши
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "D:\\chromedriver.exe";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
 
 
-//           Actions actions = new Actions(driver);
+//        Actions actions = new Actions(driver);
+//        actions.contextClick() // клик ПКМ
+//                .keyDown() // нажатие кнопки
+//                .keyUp() //отжать кнопку
+//                .pause(1000) // пауза для задержки
 
-//           actions
-//                   //.dragAndDropBy(element, 100, 100);
+        try {
+            driver.get("https://crossbrowsertesting.github.io/drag-and-drop");
+            Thread.sleep(2000); // Задержка для прогрузки сайта 2сек
 
-//                   .pause(1000)
+            WebElement element = driver.findElement(By.id("draggable"));
+            WebElement element2 = driver.findElement(By.id("droppable"));
 
-//                   .moveToElement(element)
+            Actions actions = new Actions(driver);
 
-//                   .clickAndHold()
+            actions
+                    .moveToElement(element) //навести курсор на элемент
+                    .clickAndHold() // нажать и держать
+                    .moveToElement(element2) //навести курсор на элемент
+                    .release() // отпустить зажатую кнопку
+                    .build() // собрать в едино действия выше
+                    .perform(); // применить сборку
 
-//                   .moveToElement(element2)
+            // или можно сделать одним методом
+            //.dragAndDropBy(element, element2);
+            //.dragAndDropBy(element, 100, 100); // выбираем элемент который хотим переместить, а потом координаты по х и у
 
-//                   .release()
+        } catch (InterruptedException e) { //отловить исключение
+            e.printStackTrace(); // вывести исключение на экран
 
-//                   .build()
+        } finally {
+            Thread.sleep(1000);
+            driver.quit();
+        }
+    }
 
-//                   .perform();
+    @Test
+    public void testPagination() { // пагинация
+
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "D:\\chromedriver.exe";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 
-//       } catch (InterruptedException e) {
-//           e.printStackTrace();
-//       }
-//       finally {
-//           Thread.sleep(20000);
-//           driver.quit();
-//       }git status
+        try {
+            driver.get("http://pagination.js.org/");
+            Thread.sleep(1000);
+            List<WebElement> elements = driver.findElements(By.xpath("//div[@class='data-container']/ul/li")); //ПОлучить коллекцию строк
+            List<WebElement> pages = driver.findElements(By.xpath("//div[@class='paginationjs-pages']/ul/li")); //ПОлучить коллекцию страницу
+            String text = elements.get(5).getText();
+            System.out.println(text);
+
+            pages.get(2).click(); //выбрать вторую страницу
+//            wait.until(ExpectedConditions.stalenessOf(elements.get(5))); //ждем когда пропадет 5 по индексу-6 элемент с базовой страницы
+
+            elements = driver.findElements(By.xpath("//div[@class='data-container']/ul/li")); //ПОлучить коллекцию строк с новой страницы
+
+            text = elements.get(5).getText();
+            System.out.println(text);
+
+
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            driver.quit();
+        }
     }
 
     @Test
@@ -344,7 +391,7 @@ public class OmayoBlogspotCom {
         WebDriver driver = new ChromeDriver();
         driver.get(URL);
 
-        JavascriptExecutor jse = (JavascriptExecutor)driver;// Интерфейск исполнитель яваскрипта
+        JavascriptExecutor jse = (JavascriptExecutor) driver;// Интерфейск исполнитель яваскрипта
         jse.executeScript("alert('Arum Motoori');"); //Отобразить предупреждение
     }
 
@@ -359,7 +406,7 @@ public class OmayoBlogspotCom {
         WebDriver driver = new ChromeDriver();
         driver.get(URL);
 
-        JavascriptExecutor jse = (JavascriptExecutor)driver;// Интерфейск исполнитель яваскрипта
+        JavascriptExecutor jse = (JavascriptExecutor) driver;// Интерфейск исполнитель яваскрипта
         jse.executeAsyncScript("window.setTimeout(function(){alert('world');},4000);alert('Hello');"); //Сначала выполнится Хэлло, потом ворлд
     }
 }
