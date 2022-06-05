@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-
 public class WebTest {
     //
     @Test
@@ -50,7 +49,6 @@ public class WebTest {
         Assert.assertEquals(actualResult, expectedResult);
 
         driver.quit();
-
     }
 
     @Test //TC_11_01
@@ -81,7 +79,6 @@ public class WebTest {
         Assert.assertEquals(actualResult, expectedResult);
 
         driver.quit();
-
     }
 
     @Test //TC_11_02
@@ -198,7 +195,6 @@ public class WebTest {
         String expectedResult1 = "Gregor Scheithauer";
         String expectedResult2 = "Stefan Scheler";
 
-
         driver.get(url);
         WebElement submenuTeam = driver.findElement(
                 By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/a[@href='team.html']")
@@ -229,7 +225,6 @@ public class WebTest {
 
         driver.quit();
     }
-
 
     @Test //TC_11_07 ПРИДУМАТЬ!
     public void testMyOwnAutoTest() {
@@ -482,7 +477,6 @@ public class WebTest {
         String expectedResult2 = "rgba(255, 0, 0, 1)";
         String expectedResult3 = "b";
         String expectedResult4 = "700";
-
 
         WebDriver driver = new ChromeDriver();
 

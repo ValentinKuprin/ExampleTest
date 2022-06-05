@@ -5,7 +5,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 public class OmayoBlogspotCom {
 
     public static final String URL = "http://omayo.blogspot.com/";
+
+    /////// РАБОТА С ОКНАМИ /////////
 
     @Test
     public static void checkMessageAllert() { // Получить информацию из нового окна
@@ -86,7 +87,7 @@ public class OmayoBlogspotCom {
         }
     }
 
-    /////////////////////////////////////////////////////// wait ///////////////////////////////////
+    /////////////////////////////////////////////////////// WAIT ///////////////////////////////////
     @Test
     public void checkCheckbox() { // + Ограничения загрузки элемента
         String chromeDriver = "webdriver.chrome.driver";
@@ -147,7 +148,6 @@ public class OmayoBlogspotCom {
 
         WebDriverWait wait = new WebDriverWait(driver, 12);
 
-
         driver.findElement(By.xpath("//button[text()= 'Check this']")).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.id("dte"))).click(); //Что бы элемент был кликабельным
     }
@@ -162,7 +162,7 @@ public class OmayoBlogspotCom {
 
         WebDriverWait wait = new WebDriverWait(driver, 25);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("deletesuccess")));
-        //Невидимость элемента раcположенного по локатору (Ждем пока элемент исчезнет)
+        //Невидимость элемента раcположеного по локатору (Ждем пока элемент исчезнет)
         driver.findElement(By.id("alert2")).click();
     }
 
@@ -210,6 +210,8 @@ public class OmayoBlogspotCom {
         alert.sendKeys("Aurm"); //Ввод текста, проблемы с водом в браузере хром.
     }
 
+    ///////////// ACTIONS ///////////////
+
     @Test
     public void testSendKeysOfWebElementAndSendKeysOfActions() { //ввести текст в окне предупреждения
         String chromeDriver = "webdriver.chrome.driver";
@@ -217,7 +219,6 @@ public class OmayoBlogspotCom {
         System.setProperty(chromeDriver, driverPath);
         WebDriver driver = new ChromeDriver();
         driver.get(URL);
-
 
         WebElement userNameField = driver.findElement(By.name("userid"));
         userNameField.sendKeys("Arum"); // Для ввода текса в текстовые поля
@@ -312,7 +313,6 @@ public class OmayoBlogspotCom {
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-
         try {
             driver.get("http://pagination.js.org/");
             Thread.sleep(1000);
@@ -328,8 +328,6 @@ public class OmayoBlogspotCom {
 
             text = elements.get(5).getText();
             System.out.println(text);
-
-
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -380,7 +378,6 @@ public class OmayoBlogspotCom {
         Thread.sleep(3000);
         driver.findElement(By.name("userid")).sendKeys(Keys.chord(Keys.CONTROL, "z"));
         // Вызываем метод ввода текста, chord - возможность зажать две клавиши
-
     }
 
     @Test
