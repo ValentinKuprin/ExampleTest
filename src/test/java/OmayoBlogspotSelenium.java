@@ -4,15 +4,16 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class OmayoBlogspotCom {
+public class OmayoBlogspotSelenium {
 
     public static final String URL = "http://omayo.blogspot.com/";
+    // https://www.youtube.com/playlist?list=PLsjUcU8CQXGHwYF_cL_YvfT3KtbggJIOT
+    // https://www.youtube.com/playlist?list=PLsjUcU8CQXGErA7pq8DGBSNiKdr-cKpdg
 
     /////// РАБОТА С ОКНАМИ /////////
 
@@ -406,4 +407,5 @@ public class OmayoBlogspotCom {
         JavascriptExecutor jse = (JavascriptExecutor) driver;// Интерфейск исполнитель яваскрипта
         jse.executeAsyncScript("window.setTimeout(function(){alert('world');},4000);alert('Hello');"); //Сначала выполнится Хэлло, потом ворлд
     }
+
 }
