@@ -17,9 +17,6 @@ public class treaning {
 //        driver.manage().window().maximize();
 //        Thread.sleep(5000);
 
-
-
-
         Actions actions = new Actions(driver);
 //
         WebElement rome = driver.findElement(By.id("box6"));
