@@ -11,7 +11,6 @@ public class LoginPage {
 //    LoginPage loginPage = new LoginPage(appiumDriver);
 //    loginPage.username().sendKeys("username");
 
-
     private AppiumDriver<MobileElement> appiumDriver;
     private final By usernameById = MobileBy.AccessibilityId("input-email");
     private final By passwordById = MobileBy.AccessibilityId("input-password");
