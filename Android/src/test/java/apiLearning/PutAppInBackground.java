@@ -31,7 +31,7 @@ public class PutAppInBackground {
         //Перевести приложение в фоновый режим (сэмулировать нажатие кнопки домой на телефоне) на 5 сек, и возвращается обратно
         appiumDriver.runAppInBackground(Duration.ofSeconds(5));
 
-        // Если во время фонового режима нужно сделать лействия вне приложения
-        appiumDriver.runAppInBackground(Duration.ofSeconds(-1));
+//        // Если во время фонового режима нужно сделать лействия вне приложения
+//        appiumDriver.runAppInBackground(Duration.ofSeconds(-1));
     }
 }
