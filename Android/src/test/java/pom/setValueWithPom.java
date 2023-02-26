@@ -1,4 +1,4 @@
-package apiLearning;
+package pom;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
