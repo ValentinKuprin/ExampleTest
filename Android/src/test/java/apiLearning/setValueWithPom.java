@@ -5,7 +5,7 @@ import io.appium.java_client.MobileElement;
 import pages.LoginPage;
 import utils.AppiumDriverEx;
 
-//https://www.youtube.com/watch?v=YecsinHl88A&list=PLBNb67lT6eELiDgH97xpdJeKM624Zm7li&index=11
+// https://www.youtube.com/watch?v=sHG46-f91Qo&list=PLBNb67lT6eELiDgH97xpdJeKM624Zm7li&index=26
 public class setValueWithPom {
     public static void main(String[] args) {
 
@@ -21,7 +21,7 @@ public class setValueWithPom {
         loginPage.username().sendKeys("client@yandex.ru");
 
         // 4. Ввести пароль
-        loginPage.username().sendKeys("password");
+        loginPage.password().sendKeys("password");
 
         // 5. Нажать кнопку войти
         loginPage.loginButton().click();
