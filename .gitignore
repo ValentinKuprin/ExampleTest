@@ -3,3 +3,7 @@
 /Android/build/
 /target/
 /.idea/
+/.idea/
+/Appium/.gradle/
+/Appium/.idea/
+/Appium/build/
