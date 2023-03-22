@@ -35,7 +35,7 @@ public class GetAndPostExamples {
 
         System.out.println(map);
 
-       JSONObject request = new JSONObject(map); //преобразование JSON, ключи и значения отображают еовычки для данных, если они были указаны (для ключа обязательный атрибут)
+       JSONObject request = new JSONObject(map); //преобразование JSON (json.simple), ключи и значения отображают ковычки для данных, если они были указаны (для ключа обязательный атрибут)
        JSONObject request1 = new JSONObject();
        request1.put("name", "Raghaver");
 
