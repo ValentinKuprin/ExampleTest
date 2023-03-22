@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 
 public class TestExamples {
 
+    //https://automationstepbystep.com/
+
     @Test
     public void checkStatusCodeAndGetInfo() {
         Response response = get("https://reqres.in/api/users?page=2");
