@@ -3,7 +3,6 @@ import org.codehaus.groovy.runtime.powerassert.Value;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 
-import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +27,6 @@ public class GetAndPostExamples {
 
    @Test
     public void testPost() {
-
         Map<String, Object> map = new HashMap<String, Object>(); // ключ будет строкой, значение любым объектом
         map.put("name", "Raghav");
         map.put("job", "Teacher");
@@ -39,9 +37,9 @@ public class GetAndPostExamples {
        JSONObject request1 = new JSONObject();
        request1.put("name", "Raghaver");
 
-//       System.out.println(request);
-//       System.out.println(request.toJSONString());
-//       System.out.println(request1);
+       System.out.println(request);
+       System.out.println(request.toJSONString());
+       System.out.println(request1);
 
        baseURI = "https://reqres.in/api";
 
