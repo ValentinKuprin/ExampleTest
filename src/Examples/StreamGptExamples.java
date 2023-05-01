@@ -203,5 +203,5 @@ public class StreamGptExamples {
      List<Integer> sortedNumbers = numbers.stream()
      .sorted()
      .collect(Collectors.toList());
-
+*/
      }
